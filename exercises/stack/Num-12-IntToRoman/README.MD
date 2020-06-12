@@ -1,5 +1,3 @@
-package leetcodes
-
 /**
 12. 整数转罗马数字
 罗马数字包含以下七种字符： I， V， X， L，C，D 和 M。
@@ -44,16 +42,3 @@ C 可以放在 D (500) 和 M (1000) 的左边，来表示 400 和 900。
 输出: "MCMXCIV"
 解释: M = 1000, CM = 900, XC = 90, IV = 4.
 */
-func IntToRoman(num int) string {
-	output := ""
-	for _, value := range RomanSort {
-		merchant := num / value
-		if merchant > 0 {
-			for i := 0; i < merchant; i++ {
-				output += RomanNumeralDict[value]
-			}
-			num = num - merchant*value
-		}
-	}
-	return output
-}
