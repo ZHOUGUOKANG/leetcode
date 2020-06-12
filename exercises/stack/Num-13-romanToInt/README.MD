@@ -1,5 +1,3 @@
-package leetcodes
-
 /**
 13. 罗马数字转整数
 罗马数字包含以下七种字符: I， V， X， L，C，D 和 M。
@@ -44,20 +42,3 @@ C 可以放在 D (500) 和 M (1000) 的左边，来表示 400 和 900。
 输出: 1994
 解释: M = 1000, CM = 900, XC = 90, IV = 4.
 */
-func RomanToInt(s string) int {
-	num := 0
-	length := len(s)
-	tmpStr := ""
-	for i := 0; i < length; i++ {
-		tmpStr += string(s[i])
-		if i < length-1 {
-			if _, ok := NumeralRomanDict[tmpStr+string(s[i+1])]; ok {
-				i++
-				tmpStr += string(s[i])
-			}
-		}
-		num += NumeralRomanDict[tmpStr]
-		tmpStr = ""
-	}
-	return num
-}

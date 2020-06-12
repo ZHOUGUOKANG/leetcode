@@ -1,17 +1,7 @@
-package leetcodes
+package Num_5_LongestPalindrome
 
 import "strings"
 
-/**
-5. 最长回文子串
-给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000。
-
-示例 1：
-
-输入: "babad"
-输出: "bab"
-注意: "aba" 也是一个有效答案。
-*/
 func LongestPalindrome(s string) string {
 	str := []byte(s)
 	length := len(str)
