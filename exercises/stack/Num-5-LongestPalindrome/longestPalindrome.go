@@ -1,50 +1,36 @@
 package Num_5_LongestPalindrome
 
-import "strings"
-
 func LongestPalindrome(s string) string {
-	str := []byte(s)
-	length := len(str)
+	// 特判
+	length := len(s)
 	if length < 2 {
 		return s
 	}
-	tmpLen := length*2 + 1
-	tmpStrArray := make([]byte, tmpLen)
-	for i, j := 0, 0; i < tmpLen; i++ {
-		if i%2 == 0 {
-			//插入#号
-			tmpStrArray[i] = 35
-		} else {
-			tmpStrArray[i] = str[j]
-			j++
-		}
-
+	maxLen := 1
+	begin := 0
+	// dp[i][j] 表示 s[i, j] 是否是回文串
+	dp := make([][]bool, length)
+	for i := 0; i < length; i++ {
+		dp[i] = make([]bool, length)
+		dp[i][i] = true
 	}
-	max := ""
-	tmpStr := ""
-	index := 1
-	for key, value := range tmpStrArray {
-		tmpStr = string(value)
-		index = 1
-		for {
-			left := key - index
-			right := key + index
-			if right >= tmpLen || left < 0 {
-				if len(tmpStr) > len(max) {
-					max = tmpStr
-				}
-				break
-			}
-			if tmpStrArray[left] == tmpStrArray[right] {
-				tmpStr = string(tmpStrArray[left]) + tmpStr + string(tmpStrArray[left])
-				index++
+	for j := 1; j < length; j++ {
+		for i := 0; i < j; i++ {
+			if s[i] != s[j] {
+				dp[i][j] = false
 			} else {
-				if len(tmpStr) > len(max) {
-					max = tmpStr
+				if j-i < 3 {
+					dp[i][j] = true
+				} else {
+					dp[i][j] = dp[i+1][j-1]
 				}
-				break
+			}
+			// 只要 dp[i][j] == true 成立，就表示子串 s[i..j] 是回文，此时记录回文长度和起始位置
+			if dp[i][j] && j-i+1 > maxLen {
+				maxLen = j - i + 1
+				begin = i
 			}
 		}
 	}
-	return strings.Replace(max, "#", "", -1)
+	return s[begin : begin+maxLen]
 }
