@@ -63,9 +63,9 @@ func (list *SkipList) Insert(value int) *Node {
 
 	return node
 }
-func (s *SkipList) Delete(value int) (node *Node) {
-	current := s.head
-	for i := s.Level - 1; i >= 0; i-- {
+func (list *SkipList) Delete(value int) (node *Node) {
+	current := list.head
+	for i := list.Level - 1; i >= 0; i-- {
 		for current.forward[i] != nil {
 			if current.forward[i].Value == value {
 				node = current.forward[i]
@@ -80,9 +80,9 @@ func (s *SkipList) Delete(value int) (node *Node) {
 	}
 	return node
 }
-func (s *SkipList) Search(value int) (node *Node, err error) {
-	current := s.head
-	for i := s.Level - 1; i >= 0; i-- {
+func (list *SkipList) Search(value int) (node *Node, err error) {
+	current := list.head
+	for i := list.Level - 1; i >= 0; i-- {
 		for current.forward[i] != nil {
 			if current.forward[i].Value == value {
 				node = current.forward[i]
@@ -99,10 +99,10 @@ func (s *SkipList) Search(value int) (node *Node, err error) {
 	}
 	return node, nil
 }
-func (s *SkipList) Print() {
+func (list *SkipList) Print() {
 	fmt.Println()
-	for i := s.Level - 1; i >= 0; i-- {
-		current := s.head
+	for i := list.Level - 1; i >= 0; i-- {
+		current := list.head
 		for current.forward[i] != nil {
 			fmt.Printf("%d ", current.forward[i].Value)
 			current = current.forward[i]
