@@ -35,7 +35,7 @@ func TestCustomStack(t *testing.T) {
 	}
 
 	value := cs.Pop()
-	expected = []int{10, 20, 30}
+	expected = []int{10, 20}
 	if !reflect.DeepEqual(cs.GetList(), expected) {
 		t.Error("expected", expected, "get", cs.GetList())
 	}
@@ -44,7 +44,7 @@ func TestCustomStack(t *testing.T) {
 	}
 
 	value = cs.Pop()
-	expected = []int{10, 20}
+	expected = []int{10}
 	if !reflect.DeepEqual(cs.GetList(), expected) {
 		t.Error("expected", expected, "get", cs.GetList())
 	}
