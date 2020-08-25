@@ -16,19 +16,17 @@ func solveSudoku(board [][]byte) {
 		}
 	}
 	helper = func(i, j int) bool {
-		c := board[i][j]
 		boxNum := (i/3)*3 + j/3
-		if c == '.' {
+		if board[i][j] == '.' {
 			for x := 1; x < 10; x++ {
 				cur := uint16(1 << x)
 				if (row[i]&cur)|(col[j]&cur)|(box[boxNum]&cur) == 0 {
-					t1, t2, t3 := row[i], col[j], box[boxNum]
 					row[i], col[j], box[boxNum] = row[i]|cur, col[j]|cur, box[boxNum]|cur
 					if next(i, j) {
 						board[i][j] = byte(x + '0')
 						return true
 					} else {
-						row[i], col[j], box[boxNum] = t1, t2, t3
+						row[i], col[j], box[boxNum] = row[i]^cur, col[j]^cur, box[boxNum]^cur
 					}
 				}
 			}
