@@ -1,6 +1,6 @@
 package Num_11_MaxArea
 
-func MaxArea(height []int) int {
+func maxArea(height []int) int {
 	area, max := 0, 0
 	for i, j := 0, len(height)-1; i < j; {
 		if height[i] > height[j] {

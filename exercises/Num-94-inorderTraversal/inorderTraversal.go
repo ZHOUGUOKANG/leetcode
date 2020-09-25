@@ -25,19 +25,34 @@ type TreeNode struct {
 //	return result
 //}
 
+//func inorderTraversal(root *TreeNode) []int {
+//	result := make([]int, 0)
+//	stack := make([]*TreeNode, 0)
+//	current := root
+//	for current != nil || len(stack) > 0 {
+//		for current != nil {
+//			stack = append(stack, current)
+//			current = current.Left
+//		}
+//		current = stack[len(stack)-1]
+//		stack = stack[:len(stack)-1]
+//		result = append(result, current.Val)
+//		current = current.Right
+//	}
+//	return result
+//}
+
 func inorderTraversal(root *TreeNode) []int {
-	result := make([]int, 0)
-	stack := make([]*TreeNode, 0)
-	current := root
-	for current != nil || len(stack) > 0 {
-		for current != nil {
-			stack = append(stack, current)
-			current = current.Left
+	ans := make([]int, 0)
+	helper := func(node *TreeNode) {}
+	helper = func(node *TreeNode) {
+		if node == nil {
+			return
 		}
-		current = stack[len(stack)-1]
-		stack = stack[:len(stack)-1]
-		result = append(result, current.Val)
-		current = current.Right
+		helper(node.Left)
+		ans = append(ans, node.Val)
+		helper(node.Right)
 	}
-	return result
+	helper(root)
+	return ans
 }
