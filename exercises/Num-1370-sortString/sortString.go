@@ -9,7 +9,6 @@ func sortString(s string) string {
 	ans := make([]byte, n)
 	for flag, cur := true, 0; cur < n; {
 		for i := 0; i < 26; i++ {
-
 			if flag {
 				if words[i] > 0 {
 					words[i]--
