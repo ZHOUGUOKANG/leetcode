@@ -4,10 +4,10 @@ import (
 	"math"
 )
 
-var cache = map[int]int{}
+var cache = [10001]int{}
 
 func numSquares(n int) (ans int) {
-	if v, ok := cache[n]; ok {
+	if v := cache[n]; v != 0 {
 		return v
 	}
 	ans = math.MaxInt64
