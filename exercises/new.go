@@ -31,7 +31,10 @@ func main() {
 
 	template := `package Num_%d_%s
 	
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 func TestNum_%d_%s(t *testing.T)  {
 

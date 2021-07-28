@@ -1,18 +1,17 @@
-package Num_863_DistanceK
+package Num_1893_IsCovered
 
 import (
 	"fmt"
 	"testing"
 )
 
-func TestNum_863_DistanceK(t *testing.T) {
+func TestNum_1893_IsCovered(t *testing.T) {
 
 	e := []struct {
 		expected interface{}
 	}{
 		{},
 	}
-
 	for _, v := range e {
 		o := 0
 		if o != v.expected {
