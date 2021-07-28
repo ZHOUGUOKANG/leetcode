@@ -1,25 +1,20 @@
 package main
 
-import (
-	"fmt"
-	"log"
-	"net/http"
+//func main() {
+//	//sum1,sum2 := loop(10),recursion(10)
+//	//fmt.Printf("sum1=%d,sum2=%d",sum1,sum2)
+//}
 
-	"github.com/julienschmidt/httprouter"
-)
-
-func Index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	fmt.Fprint(w, "Welcome!\n")
+func loop(n int) (sum int) {
+	for i := 0; i < n; i++ {
+		sum += i
+	}
+	return
 }
 
-func Hello(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-	fmt.Fprintf(w, "hello, %s!\n", ps.ByName("name"))
-}
-
-func main() {
-	router := httprouter.New()
-	router.GET("/", Index)
-	router.GET("/hello/:name", Hello)
-
-	log.Fatal(http.ListenAndServe(":8080", router))
+func helper(i, n int) int {
+	if i >= n {
+		return 0
+	}
+	return i + helper(i+1, n)
 }
